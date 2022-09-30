@@ -18,6 +18,7 @@ def selectFile():
             filetypes=(("pdf files", ".pdf"),))
     fileCount += 1
     filepaths.append(fpath[0])
+    # add text indication of how many pdf files have been selected for merging
     appendtext = str(fileCount) + " files added for merge"
     Label(win, text=appendtext).place(x = 10, y = 50)
 
@@ -26,6 +27,7 @@ def mergePDFs():
     merger = PyPDF2.PdfFileMerger()
     for file in range(len(filepaths)):
         merger.append(filepaths[file])
+    # give resultant pdfname with timestamp
     merger.write(dt.strftime("%Y%m%d_%H%M%S") + "_resultantDoc.pdf")
     merger.close()
     Label(win, text = "---Merged selcetd PDFs---").place(x = 184, y = 180)
