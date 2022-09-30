@@ -14,13 +14,11 @@ win.geometry('500x300')
 
 def selectFile():
     global fpath, fileCount
-    #fpath.append(filedialog.askopenfilenames(title="Select file", 
-    #    filetypes=(("pdf files", ".pdf"), ("all files", "*.*"))))
     fpath = filedialog.askopenfilenames(title="Select file", 
             filetypes=(("pdf files", ".pdf"),))
     fileCount += 1
     filepaths.append(fpath[0])
-    print(filepaths)
+    # add text indication of how many pdf files have been selected for merging
     appendtext = str(fileCount) + " files added for merge"
     Label(win, text=appendtext).place(x = 10, y = 50)
 
@@ -29,10 +27,12 @@ def mergePDFs():
     merger = PyPDF2.PdfFileMerger()
     for file in range(len(filepaths)):
         merger.append(filepaths[file])
+    # give resultant pdfname with timestamp
     merger.write(dt.strftime("%Y%m%d_%H%M%S") + "_resultantDoc.pdf")
     merger.close()
     Label(win, text = "---Merged selcetd PDFs---").place(x = 184, y = 180)
 
+# GUI building blocks
 Label(win, text="Select PDF files in order").place(x = 10, y = 10)
 pixel = tkinter.PhotoImage(width = 1, height = 1)
 selectFileButton = Button(win, text = "Select", activeforeground = 'white', image = pixel, width = 30, 
