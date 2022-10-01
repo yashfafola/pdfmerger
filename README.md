@@ -1,5 +1,5 @@
 # PDF Merger
-A simple app with GUI to merge multiple pdf files, written in python.
+A simple app with GUI to merge multiple pdf files, written in python. Tested on Python 3.10.5.
 
 ## Steps to use
 1. Clone this repository or download this code.
